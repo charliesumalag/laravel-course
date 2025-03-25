@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 use App\Models\Task;
+
 
 
 Route::get('/', function () {
@@ -15,6 +18,9 @@ Route::get('/tasks', function () {
     ]);
 })->name('task.index');
 
+
+Route::view('/tasks/create', 'create')->name('task.create');
+
 Route::get('/tasks/{id}', function ($id) {
 
     return view('show', [
@@ -25,3 +31,8 @@ Route::get('/tasks/{id}', function ($id) {
 Route::fallback(function () {
     return 'Still got somewhere';
 });
+
+
+Route::post('/tasks', function (Request $request) {
+    dd($request->all());
+})->name('task.store');
