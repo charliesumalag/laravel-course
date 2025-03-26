@@ -4,7 +4,7 @@
 @section('content')
     @if (count($tasks))
         @foreach ($tasks as $task)
-        <a href="{{route('task.show', ['id' => $task-> id])}}">
+        <a href="{{route('task.show', ['task' => $task-> id])}}">
             <div>{{$task->title}}</div>
         </a>
         @endforeach
