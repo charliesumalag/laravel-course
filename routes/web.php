@@ -27,7 +27,7 @@ Route::get('/tasks/{task}/edit', function (Task $task) {
     return view('edit', [
         'task' =>   $task
     ]);
-})->name('task.show');
+})->name('task.edit');
 
 Route::get('/tasks/{task}', function (Task $task) {
 
@@ -50,11 +50,11 @@ Route::post('/tasks', function (TaskRequest $request) {
 })->name('task.store');
 
 
-Route::put('/tasks/${task}', function (Task $task, TaskRequest $request) {
+Route::put('/tasks/{task}', function (Task $task, TaskRequest $request) {
     $task->update($request->validated());
 
     return redirect()->route('task.show', [
-        'id' => $task->id
+        'task' => $task->id
     ])->with('success', 'Task updated succesfully1');
 })->name('task.update');
 
