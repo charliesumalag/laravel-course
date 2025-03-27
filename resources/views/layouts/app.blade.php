@@ -7,6 +7,7 @@
     <title>Laravel 10 Task List App</title>
     @yield('styles')
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
 
     <style type="text/tailwindcss">
         .btn{
@@ -29,9 +30,17 @@
 </head>
 <body class="container mx-auto mt-10 mb-10 max-w-lg">
     <h1 class="text-2xl mb-4">@yield('title')</h1>
-    <div>
+    <div x-data="{ flash: true }">
         @if (session()->has('success'))
-            <div>{{session('success')}}</div>
+            <div x-show="flash" role="alert" class="relative mb-10 rounded border border-green-400 bg-green-100 px-4 py-3 text-lg text-green-700">
+                <strong class="font-bold">Success</strong>
+                <div>
+                    {{session('success')}}
+                </div>
+                <span
+                class="cursor-pointer text-green-700 text-lg absolute top-0 bottom-0 px-4 py-3 right-0" @click="flash=false"
+                >⨯</span>
+            </div>
        @endif
         @yield('content')
     </div>
