@@ -16,8 +16,6 @@
         @isset($task)
             @method('PUT')
         @endisset
-
-
         <div>
             <label for="title">Title</label>
             <input type="text" name="title" id="title" value="{{$task->title ?? old('title')}}">
@@ -28,7 +26,7 @@
         <div>
             <label for="description">Description</label>
             <textarea name="description" id="description"  rows="5">{{$task->description ?? old('description')}}</textarea>
-            @error('description')
+            @error('description')k
                 <p class="error-message">{{$message}}</p>
             @enderror
         </div>
